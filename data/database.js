@@ -2,6 +2,6 @@ import mongoose from "mongoose";
 
 export const connectDB = ()=>{
     mongoose.connect(process.env.MONGO_URI, {dbName: "backendapi",})
-    .then(() => {console.log("mongodb connected");})
+    .then((c) => {console.log(`mongodb connected with ${c.connection.host}`);})
     .catch((err) => {console.log(err);});
 }
