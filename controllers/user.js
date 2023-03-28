@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import ErrorHandler from "../middlewares/error.js";
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email: email }).select("+password");
@@ -15,7 +15,7 @@ export const login = async (req, res) => {
   sendCookie(user, res, `Welcome back, ${user.name}`, 200);
 };
 
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   let user = await User.findOne({ email });
